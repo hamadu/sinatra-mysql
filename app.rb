@@ -3,12 +3,10 @@ require 'active_record'
 require 'mysql2'
 require 'json'
 
+p ENV['RACK_ENV']
+
 ActiveRecord::Base.configurations = YAML.load_file('database.yml')
-if ENV['RDS_DB_NAME']
-  ActiveRecord::Base.establish_connection(:production)
-else
-  ActiveRecord::Base.establish_connection(:development)
-end
+ActiveRecord::Base.establish_connection(ENV['RACK_ENV'] || 'development')
 
 class User < ActiveRecord::Base
 end
