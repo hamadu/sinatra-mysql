@@ -2,11 +2,10 @@ require 'sinatra/base'
 require 'active_record'
 require 'mysql2'
 require 'json'
+require 'yaml'
 
-p ENV['RACK_ENV']
-
-ActiveRecord::Base.configurations = YAML.load_file('database.yml')
-ActiveRecord::Base.establish_connection(ENV['RACK_ENV'] || 'development')
+connection_setting = YAML.load(ERB.new(File.read('database.yml')).result)
+ActiveRecord::Base.establish_connection connection_setting[ENV['RACK_ENV'] || 'development']
 
 class User < ActiveRecord::Base
 end
