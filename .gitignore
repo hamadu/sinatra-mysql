@@ -43,3 +43,9 @@ build/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# JMeter
+jmeter.log
+
+
+
