@@ -6,7 +6,8 @@ require 'yaml'
 
 class MyApp < Sinatra::Base
   connection_setting = YAML.load(ERB.new(File.read('database.yml')).result)
-  ActiveRecord::Base.establish_connection connection_setting['development']
+  environment = ENV['RACK_ENV'] || 'development'
+  ActiveRecord::Base.establish_connection connection_setting[environment]
 
   class User < ActiveRecord::Base
   end

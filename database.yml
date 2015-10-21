@@ -6,19 +6,11 @@ development:
   password:
   encoding: utf8
   pool: 30
-production_local:
+production:
   adapter: mysql2
   encoding: utf8
   database: writeapp_sinatra
   username: root
   password:
   host: localhost
-  pool: 30
-production:
-  adapter: mysql2
-  encoding: utf8
-  database: <%= ENV['RDS_DB_NAME'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
-  password: <%= ENV['RDS_PASSWORD'] %>
-  host: <%= ENV['RDS_HOSTNAME'] %>
   pool: 30
